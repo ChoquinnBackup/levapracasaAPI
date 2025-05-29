@@ -7,10 +7,10 @@ use App\Http\Controllers\ItemController;
 Route::post( '/register', [AuthController::class , 'register']);
 Route::post( '/login', [AuthController::class , 'login']);
 
-Route::middleware(['web', 'auto.reconnect'])->group(function () {
-    Route::get('/logout', [AuthController::class, 'logout']);
-    Route::get('/items', [ItemController::class, 'listitems']);
-    Route::get('/items/{id}', [ItemController::class, 'item']);
-    Route::get('/categories/{type}', [ItemController::class, 'categories']);
+Route::middleware(['api', \Illuminate\Session\Middleware\StartSession::class])->group(function() {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
+
 
