@@ -6,7 +6,7 @@ Accept: application/json
     "name": "Test User",
     "email": "test@example.com",
     "telephone": "+1234567890",
-    "password": "password123",
+    "password": "password123"
 }
 
 ### Teste de Login
