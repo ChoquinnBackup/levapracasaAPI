@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('items', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('price', 8, 2);
             $table->integer('quantity')->default(0);
             $table->timestamps();
-            
+
             // Foreign key to the categories table
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
         });
