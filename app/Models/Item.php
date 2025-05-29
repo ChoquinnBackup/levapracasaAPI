@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Category;
+use App\Models\Categoria;
 
 class Item extends Model
 {
@@ -15,16 +15,15 @@ class Item extends Model
         'name',
         'description',
         'price',
-        'quantity',
+        'category_id',
     ];
 
     protected $casts = [
         'price' => 'float',
-        'quantity' => 'integer',
     ];
 
     // Relacionamento com a categoria
     public function category(){
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Categoria::class, 'category_id');
     }
 }

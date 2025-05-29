@@ -18,3 +18,52 @@ Accept: application/json
     "email": "test@example.com",
     "password": "password123"
 }
+
+### Criar categoria para o item (se ainda não existir)
+POST http://localhost:8000/api/categorias
+Content-Type: application/json
+
+{
+  "name": "Material Escolar"
+}
+
+###
+
+### Criar item (assumindo categoria_id = 1)
+POST http://localhost:8000/api/items
+Content-Type: application/json
+
+{
+  "name": "Caderno Universitário",
+  "description": "Capa dura, 200 folhas",
+  "price": 18.99,
+  "category_id": 1
+}
+###
+
+### Listar todos os itens
+GET http://localhost:8000/api/items
+Accept: application/json
+
+###
+
+### Ver item específico (substitua o ID se necessário)
+GET http://localhost:8000/api/items/1
+Accept: application/json
+
+###
+
+### Atualizar item (ID 1 como exemplo)
+PUT http://localhost:8000/api/items/1
+Content-Type: application/json
+
+{
+  "name": "Caderno Espiral",
+  "price": 20.50
+}
+
+###
+
+### Deletar item (ID 1 como exemplo)
+DELETE http://localhost:8000/api/items/1
+Accept: application/json
