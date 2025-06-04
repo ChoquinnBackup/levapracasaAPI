@@ -1,33 +1,26 @@
+### Registe
+
 POST http://localhost:8000/api/register
 Content-Type: application/json
 Accept: application/json
 
 {
     "name": "Test User",
-    "email": "test@example.com",
+    "email": "franci12sc1wo@example.com",
     "telephone": "+1234567890",
     "password": "password123"
 }
 
 ### Teste de Login
+
 POST http://localhost:8000/api/login
 Content-Type: application/json
 Accept: application/json
 
 {
-    "email": "test@example.com",
-    "password": "password123"
+    "email": "neo@gmail.com",
+    "password": "123456"
 }
-
-### Criar categoria para o item (se ainda não existir)
-POST http://localhost:8000/api/categorias
-Content-Type: application/json
-
-{
-  "name": "Material Escolar"
-}
-
-###
 
 ### Criar item (assumindo categoria_id = 1)
 POST http://localhost:8000/api/items

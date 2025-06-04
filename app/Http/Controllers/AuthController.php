@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Cookie;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request;
-use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
+            'name' => 'required',
+            'telephone' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6'
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'telephone' => $request->telephone,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password)
         ]);
 
         return response()->json([
@@ -28,34 +30,41 @@ class AuthController extends Controller
             'user' => $user
         ], 201);
     }
-    public function login(Request $request){
-        $credentials = $request->validate([
+
+    public function login(Request $request)
+    {
+        $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required'
         ]);
 
-        if (Auth::attempt($credentials, $request->filled('remember'))) {
-            $request->session()->regenerate();
-            
-            // Setar cookie para reconexão automática (opcional)
-            if ($request->filled('remember')) {
-                $cookie = Cookie::make('user_id', Auth::id(), 43200); // 30 dias
-                return redirect()->intended('/dashboard')->withCookie($cookie);
-            }
-            
-            return redirect()->intended('/dashboard');
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return response()->json([
+                'message' => 'Invalid login details'
+            ], 401);
         }
 
-        return back()->withErrors([
-            'email' => 'Credenciais inválidas.',
+        $user = Auth::user();
+        $token = $user->createToken('authToken')->plainTextToken;
+
+        return response()->json([
+            'message' => 'Login successful',
+            'access_token' => $token,
+            'token_type' => 'Bearer'
         ]);
     }
-    public function logout(Request $request){
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        
-        // Limpar cookie de reconexão
-        return redirect('/')->withCookie(Cookie::forget('user_id'));
+
+    public function user(Request $request)
+    {
+        return $request->user();
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'message' => 'Logged out'
+        ]);
     }
 }

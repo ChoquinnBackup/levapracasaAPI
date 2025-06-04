@@ -14,4 +14,3 @@ Route::middleware(['api', \Illuminate\Session\Middleware\StartSession::class])->
     Route::post('/categorias', [CategoriaController::class, 'store']);
 });
 
-
