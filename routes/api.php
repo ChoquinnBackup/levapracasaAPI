@@ -1,4 +1,4 @@
-<?
+<?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaController;
@@ -11,5 +11,5 @@ Route::post('/login', [AuthController::class , 'login']);
 Route::middleware('api')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::apiResource('/items', ItemController::class);
-    Route::post('/categorias', [CategoriaController::class, 'store']);
+    Route::get('/categorias/{id}', [CategoriaController::class, 'index']);
 });

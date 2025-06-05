@@ -6,9 +6,9 @@ Accept: application/json
 
 {
     "name": "Test User",
-    "email": "franci12sc1wo@example.com",
+    "email": "neo23@gmail.com",
     "telephone": "+1234567890",
-    "password": "password123"
+    "password": "123456"
 }
 
 ### Teste de Login
@@ -31,11 +31,15 @@ Accept: application/json
   "name": "Caderno",
   "description": "Capa dura, 200 folhas",
   "price": "18.99",
-  "category_id":"1" 
+  "category_id":"2" 
 }
 
 ### Listar todos os itens
 GET http://localhost:8000/api/items
+Accept: application/json
+
+### Listar itens de categorias diferentes
+GET http://localhost:8000/api/categorias/3
 Accept: application/json
 
 ###

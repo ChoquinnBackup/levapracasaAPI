@@ -8,16 +8,15 @@ use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
 {
-    public function store(Request $request): JsonResponse
+    public function index($id): JsonResponse
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-    
-        $categoria = Categoria::create([
-            'name' => $request->input('name'),
-        ]);
-    
-        return response()->json($categoria, 201);
+         // Buscar a categoria pelo id com os itens relacionados
+        $categoria = Categoria::with('items')->find($id);
+
+    if (!$categoria) {
+        return response()->json(['message' => 'Categoria não encontrada'], 404);
+    }
+
+    return response()->json($categoria);
     }
 }
