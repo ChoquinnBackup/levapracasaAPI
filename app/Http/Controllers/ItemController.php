@@ -19,11 +19,12 @@ class ItemController extends Controller
 
     public function store(StoreItemRequest $request): JsonResponse{
 
-        \Log::info('Dados recebidos:', $request->all());
+         \Log::info('Dados recebidos:', $request->all());
         
         $item = Item::create($request->validated());
 
         return response()->json($item, 201);
+       
     }
 
     public function show(Item $item): JsonResponse{

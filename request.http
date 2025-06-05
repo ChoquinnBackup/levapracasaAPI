@@ -18,21 +18,21 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "email": "neo@gmail.com",
+    "email": "neo23@gmail.com",
     "password": "123456"
 }
 
 ### Criar item (assumindo categoria_id = 1)
 POST http://localhost:8000/api/items
 Content-Type: application/json
+Accept: application/json
 
 {
-  "name": "Caderno Universitário",
+  "name": "Caderno",
   "description": "Capa dura, 200 folhas",
-  "price": 18.99,
-  "category_id": 1
+  "price": "18.99",
+  "category_id":"1" 
 }
-###
 
 ### Listar todos os itens
 GET http://localhost:8000/api/items
