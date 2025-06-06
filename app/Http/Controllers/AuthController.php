@@ -15,14 +15,16 @@ class AuthController extends Controller
             'name' => 'required',
             'telephone' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
+            'local' => 'required'
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'telephone' => $request->telephone,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'local' => $request->local
         ]);
 
         return response()->json([
