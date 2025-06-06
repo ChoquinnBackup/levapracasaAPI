@@ -8,7 +8,8 @@ Accept: application/json
     "name": "Test User",
     "email": "neo23@gmail.com",
     "telephone": "+1234567890",
-    "password": "123456"
+    "password": "123456",
+    "local": "Rua Exemplo, 123"
 }
 
 ### Teste de Login
@@ -22,6 +23,12 @@ Accept: application/json
     "password": "123456"
 }
 
+###teste asdhyadhga
+
+GET http://localhost:8000/api/user
+Content-Type: application/json
+Accept: application/json
+
 ### Criar item (assumindo categoria_id = 1)
 POST http://localhost:8000/api/items
 Content-Type: application/json
@@ -30,6 +37,7 @@ Accept: application/json
 {
   "name": "Caderno",
   "description": "Capa dura, 200 folhas",
+  "expiry_date": "2025-12-31",
   "category_id":"2" 
 }
 

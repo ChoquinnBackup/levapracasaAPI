@@ -11,7 +11,7 @@ class UpdateItemRequest extends FormRequest
         return [
             'name' => 'sometimes|required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'sometimes|required|numeric|min:0',
+            'expiry_date' => 'sometimes|nullable|date',
             'categoria_id' => 'sometimes|required|exists:categorias,id',
         ];
     }

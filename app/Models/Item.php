@@ -14,6 +14,7 @@ class Item extends Model
     protected $fillable = [
         'name',
         'description',
+        'expiry_date',
         'category_id',
     ];
 

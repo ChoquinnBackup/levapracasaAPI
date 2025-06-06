@@ -11,7 +11,7 @@ class StoreItemRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
+            'expiry_date' => 'nullable|date',
             'category_id' => 'required|integer|exists:categories,id'
         ];
     }
