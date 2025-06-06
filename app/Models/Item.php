@@ -14,12 +14,7 @@ class Item extends Model
     protected $fillable = [
         'name',
         'description',
-        'price',
         'category_id',
-    ];
-
-    protected $casts = [
-        'price' => 'float',
     ];
 
     // Relacionamento com a categoria

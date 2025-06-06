@@ -17,10 +17,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::table('categories', function (Blueprint $table) {
-            $table->bigInteger(id);
-        });
-
     }
 
     /**

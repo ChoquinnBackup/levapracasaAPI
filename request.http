@@ -30,7 +30,6 @@ Accept: application/json
 {
   "name": "Caderno",
   "description": "Capa dura, 200 folhas",
-  "price": "18.99",
   "category_id":"2" 
 }
 
