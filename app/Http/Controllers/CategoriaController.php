@@ -3,20 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Item;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategoriasRequest;
+
 
 class CategoriaController extends Controller
 {
-    public function index($id): JsonResponse
+    public function index(int $id): JsonResponse
     {
-         // Buscar a categoria pelo id com os itens relacionados
-        $categoria = Categoria::with('items')->find($id);
+        $cat = Item::where('category_id', $id)->get();
 
-    if (!$categoria) {
+    if (!$cat) {
         return response()->json(['message' => 'Categoria não encontrada'], 404);
     }
 
-    return response()->json($categoria);
+    return response()->json($cat);
     }
 }

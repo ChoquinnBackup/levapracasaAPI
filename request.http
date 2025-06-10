@@ -35,10 +35,10 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "name": "Caderno",
+  "name": "Cadernoasd 2 Espiral",
   "description": "Capa dura, 200 folhas",
   "expiry_date": "2025-12-31",
-  "category_id":"2" 
+  "category_id":"3" 
 }
 
 ### Listar todos os itens
@@ -46,7 +46,7 @@ GET http://localhost:8000/api/items
 Accept: application/json
 
 ### Listar itens de categorias diferentes
-GET http://localhost:8000/api/categorias/3
+GET http://localhost:8000/api/categorias/1
 Accept: application/json
 
 ###
